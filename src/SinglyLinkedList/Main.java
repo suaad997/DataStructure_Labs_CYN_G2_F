@@ -5,9 +5,10 @@ public class Main {
        SinglyLinkedList<Integer>  list=new SinglyLinkedList<Integer>();
        list.addlast(30);
        list.addlast(20);
-       list.addFirst(10);
-       list.addFirst(5);
-       list.removeFirst();
+       list.addlast(10);
+       list.addlast(5);
+       list.addAtPosition(40,3);
+       //list.removeFirst();
        list.display();
     }
 }

@@ -84,7 +84,32 @@ public void display(){
 
 }
 
+public void addAtPosition(E data,int position){
+    if(position<1 || position>size+1){
+        throw new IllegalArgumentException("Invaild Position");
+    }
+    if (position==1){
+        addFirst(data);
+        return;
+    }
+    else {
+        Node<E>newNode=new Node(data,null);
+        Node<E> temp=head;
+        int count=1;
+        while (count<position-1){
+            temp=temp.getNext();
+            count++;
+        }
+        newNode.setNext(temp.getNext());
+        temp.setNext(newNode);
+        if (newNode.getNext()==null){
+            tail=newNode;
+        }
+        size++;
+    }
 
+
+}
 
 
 class Node<E>{
