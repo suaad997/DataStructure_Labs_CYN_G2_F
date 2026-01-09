@@ -5,13 +5,71 @@ private Node<E> header;
 private Node<E> tailer;
 private int size;
 
-    public DoublyLinkedList() {
+public DoublyLinkedList() {
         header=new Node(null,null,null);
         tailer=new Node(header,null,null);
         header.setNext(tailer);
         size=0;
 
     }
+public int size(){
+        return size;
+    }
+public boolean isEmpty(){
+        return size()==0;
+    }
+private void addBetween(Node<E> left,E data,Node<E> right) {
+    Node<E> newNode=new Node(left,data,right);
+    left.setNext(newNode);
+    right.setPrev(newNode);
+    size++;
+}
+public void addFirst(E data){
+    addBetween(header,data,header.getNext());
+}
+public void addLast(E data){
+        addBetween(tailer.getPrev(),data,tailer);
+    }
+public E getFirst(){
+    if (isEmpty())return null;
+    return header.getNext().getData();
+}
+public E getLast(){
+        if (isEmpty())return null;
+        return tailer.getPrev().getData();
+    }
+private E remove(Node<E> deletedNode){
+    if (isEmpty())return null;
+    E delete=deletedNode.getData();
+    Node<E> left=deletedNode.getPrev();
+    Node<E> right=deletedNode.getNext();
+    left.setNext(right);
+    right.setPrev(left);
+    size--;
+    return delete;
+}
+
+public E removeFirst(){
+    return remove(header.getNext());
+}
+public E removeLast(){
+        return remove(tailer.getPrev());
+    }
+
+public void display(){
+    if(isEmpty()){
+        System.out.println("List is empty");
+    return;}
+    Node<E> temp=header.getNext();
+    System.out.print("null<---header<--->");
+    while (temp!=tailer){
+        System.out.print(temp.getData()+"<--->");
+        temp=temp.getNext();
+    }    System.out.print("tailer--->null");
+}
+
+
+
 
     class Node<E>{
     private Node<E> prev;
